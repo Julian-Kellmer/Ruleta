@@ -70,15 +70,15 @@ const segments = [
 
 export const Ruleta = () => {
   const [isSpinning, setIsSpinning] = useState(false)
-  const [lastResult, setLastResult] = useState(null)
+  // const [lastResult, setLastResult] = useState(null)
   const wheelRef = useRef(null)
-  const [spinCount, setSpinCount] = useState(0)
+  // const [spinCount, setSpinCount] = useState(0)
 
   const spinWheel = () => {
     if (isSpinning) return
 
     setIsSpinning(true)
-    setSpinCount((prev) => prev + 1)
+    // setSpinCount((prev) => prev + 1)
 
     // Generar resultado aleatorio
     const randomSegment = segments[Math.floor(Math.random() * segments.length)]
@@ -110,7 +110,7 @@ export const Ruleta = () => {
     // Mostrar resultado después de la animación
     setTimeout(() => {
       setIsSpinning(false)
-      setLastResult(randomSegment.value)
+      // setLastResult(randomSegment.value)
 
       console.log('Resultado:', randomSegment.value) // Debug
 
@@ -122,9 +122,9 @@ export const Ruleta = () => {
   }
 
   return (
-    <div className='overflow-hidden flex flex-col items-center justify-between min-h-screen bg-white p-16'>
-      <div className='text-center mb-8'>
-        <h1 className='text-[2rem] font-bold mb-2 text-black'>
+    <div className='overflow-hidden flex flex-col items-center justify-between min-h-screen bg-white lg:p-16 py-16 '>
+      <div className='text-center mb-8 w-full outline'>
+        <h1 className='text-[2rem] font-bold mb-2 text-black tracking-tight  leading-none'>
           Ruleta de Premios
         </h1>
         <p className='text-muted-foreground'>
@@ -135,7 +135,12 @@ export const Ruleta = () => {
       {/* Contenedor de la ruleta */}
       <div className='relative mb-8'>
         {/* Círculo trasero con cilindros de metal */}
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-[580px] w-[500px] h-[500px] lg:h-[580px] rounded-full bg-white shadow-2xl'>
+        <div
+          className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  
+        w-[320px] h-[320px]
+        lg:w-[580px] lg:h-[580px] 
+        sm:w-[500px] sm:h-[500px]
+        rounded-full bg-white shadow-2xl'>
           {/* Cilindros de metal alrededor del círculo */}
           {Array.from({ length: 20 }).map((_, i) => {
             const cylinderAngle = (360 / 20) * i
@@ -163,7 +168,7 @@ export const Ruleta = () => {
         {/* Decoraciones alrededor */}
 
         {/* Ruleta */}
-        <Card className='relative w-[450px] h-[450px] lg:w-[530px] lg:h-[530px] rounded-full shadow-ruleta overflow-hidden bg-white border-8 border-gray-100 z-10 shadow-xl/30'>
+        <Card className='relative w-[280px] h-[280px] sm:w-[450px] sm:h-[450px] lg:w-[530px] lg:h-[530px] rounded-full shadow-ruleta overflow-hidden bg-white border-8 border-gray-100 z-10 shadow-xl/30'>
           <div
             ref={wheelRef}
             className='w-full h-full rounded-full relative'
@@ -187,14 +192,14 @@ export const Ruleta = () => {
                 const y = 50 + 50 * Math.sin((currentAngle * Math.PI) / 180)
                 points.push(`${x}% ${y}%`)
               }
-const yOffset =
-  window.innerWidth < 640
-    ? -120
-    : window.innerWidth < 768
-    ? -150
-    : window.innerWidth < 1024
-    ? -180
-    : -200
+              const yOffset =
+                window.innerWidth < 640
+                  ? -100
+                  : window.innerWidth < 768
+                  ? -150
+                  : window.innerWidth < 1024
+                  ? -180
+                  : -200
               return (
                 <div key={segment.id}>
                   {/* Segmento de color con borde blanco */}
@@ -206,7 +211,7 @@ const yOffset =
                   />
                   {/* Texto centrado en el segmento */}
                   <div
-                    className={`absolute ${segment.textColor} font-bold select-none pointer-events-none `}
+                    className={`absolute ${segment.textColor} font-bold select-none pointer-events-none text-[0.6rem] sm:text-[0.8rem] lg:text-[1.2rem] `}
                     style={{
                       top: '50%',
                       left: '50%',
@@ -215,7 +220,7 @@ const yOffset =
                       }deg) translateY(${yOffset}px)`,
 
                       zIndex: 20,
-                      fontSize: '16px',
+                      // fontSize: '16px',
                       fontWeight: '700',
                       letterSpacing: '0.5px',
                       textAlign: 'center',
@@ -226,7 +231,7 @@ const yOffset =
                     ) : (
                       <img
                         src='/logo/SVG/isotipo.svg'
-                        className='h-10 w-20 object-contain'
+                        className='h-10 w-10 object-contain'
                       />
                     )}
                   </div>
@@ -236,12 +241,15 @@ const yOffset =
           </div>
 
           {/* Centro de la ruleta con logo */}
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-42 h-42 bg-white rounded-full border-4 border-gray-200 shadow-2xl flex items-center justify-center'>
+          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+          sm:w-36 sm:h-36
+          lg:w-42 lg:h-42
+           bg-white rounded-full border-4 border-gray-200 shadow-2xl flex items-center justify-center'>
             <div className='text-3xl font-bold text-gray-700'>
               <img
                 src='/logo/imagotipo.svg'
                 alt=''
-                className='h-24 w-24 object-contain'
+                className=' w-16 h-16 lg:h-24 lg:w-24 object-contain'
               />
             </div>
           </div>
