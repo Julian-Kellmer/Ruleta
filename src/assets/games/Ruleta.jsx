@@ -135,7 +135,7 @@ export const Ruleta = () => {
       {/* Contenedor de la ruleta */}
       <div className='relative mb-8'>
         {/* Círculo trasero con cilindros de metal */}
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] rounded-full bg-white shadow-2xl'>
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-[580px] w-[500px] h-[500px] lg:h-[580px] rounded-full bg-white shadow-2xl'>
           {/* Cilindros de metal alrededor del círculo */}
           {Array.from({ length: 20 }).map((_, i) => {
             const cylinderAngle = (360 / 20) * i
@@ -163,7 +163,7 @@ export const Ruleta = () => {
         {/* Decoraciones alrededor */}
 
         {/* Ruleta */}
-        <Card className='relative w-[530px] h-[530px] rounded-full shadow-ruleta overflow-hidden bg-white border-8 border-gray-100 z-10 shadow-xl/30'>
+        <Card className='relative w-[450px] h-[450px] lg:w-[530px] lg:h-[530px] rounded-full shadow-ruleta overflow-hidden bg-white border-8 border-gray-100 z-10 shadow-xl/30'>
           <div
             ref={wheelRef}
             className='w-full h-full rounded-full relative'
@@ -187,7 +187,14 @@ export const Ruleta = () => {
                 const y = 50 + 50 * Math.sin((currentAngle * Math.PI) / 180)
                 points.push(`${x}% ${y}%`)
               }
-
+const yOffset =
+  window.innerWidth < 640
+    ? -120
+    : window.innerWidth < 768
+    ? -150
+    : window.innerWidth < 1024
+    ? -180
+    : -200
               return (
                 <div key={segment.id}>
                   {/* Segmento de color con borde blanco */}
@@ -199,13 +206,13 @@ export const Ruleta = () => {
                   />
                   {/* Texto centrado en el segmento */}
                   <div
-                    className={`absolute ${segment.textColor} font-bold select-none pointer-events-none`}
+                    className={`absolute ${segment.textColor} font-bold select-none pointer-events-none `}
                     style={{
                       top: '50%',
                       left: '50%',
                       transform: `translate(-50%, -50%) rotate(${
                         angle + (360 / segments.length) * 3
-                      }deg) translateY(-200px)`,
+                      }deg) translateY(${yOffset}px)`,
 
                       zIndex: 20,
                       fontSize: '16px',
