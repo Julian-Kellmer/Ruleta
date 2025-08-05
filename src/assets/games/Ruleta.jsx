@@ -123,7 +123,7 @@ export const Ruleta = () => {
 
   return (
     <div className='overflow-hidden flex flex-col items-center justify-between min-h-screen bg-white lg:p-16 py-16 '>
-      <div className='text-center mb-8 w-full outline'>
+      <div className='text-center mb-8 w-full '>
         <h1 className='text-[2rem] font-bold mb-2 text-black tracking-tight  leading-none'>
           Ruleta de Premios
         </h1>
